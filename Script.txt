@@ -1,0 +1,57 @@
+// login with valid credentials
+Username_input.typeIn(username1)
+Password_input.typeIn(password1)
+Login_button.click()
+If(login_message_success.isVisible == true)
+Test.pass()
+Else
+Test.fail()
+
+// When user balance is greater than loan amount -> It should process load successfully 
+User_account = {
+    balance:5000
+}
+
+Loan_info = {
+    Amount:3000
+}
+
+Fund_loan_button.click()
+If(Fund_success_message.isVisible())
+Test.pass()
+Else
+Test.fail()
+
+// When loan amount is greater than user balance -> It should fail 
+User_account = {
+    balance:2000
+}
+
+Loan_info = {
+    Amount:3000
+}
+
+Fund_loan_button.click()
+If(Fund_error_message.isVisible())
+Test.pass()
+Else
+Test.fail()
+
+// When error message is visible -> user should routed to bank account page 
+User_Account_info ={
+	User_account: 1
+}
+Add_Bank_account_page.open()
+if(Add_balance_page.open == true)
+Test.pass()
+Else
+Test.fail()
+
+// When user did not add balance it should fail and display Fund loan error message
+User_info ={
+     balance:00
+}    
+If(Fund_loan_error_message.isVisible())
+Test.pass()
+Else
+Test.fail()
